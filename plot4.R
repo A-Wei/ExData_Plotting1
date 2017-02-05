@@ -1,6 +1,16 @@
 ##Get working directory, 
 getwd()
 
+#check if data file exists already, if not download
+filename <- 'household_power_consumption.zip'
+if (!file.exists(filename)){
+  file1 <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
+  download.file(file1, filename, method="curl")
+}  
+if (!file.exists("household_power_consumption.txt")) { 
+  unzip(filename) 
+}
+
 ## Getting full dataset, I put the dataset in the same level as plot4.R
 new_hpc = read.table('household_power_consumption.txt', sep=';', header = TRUE,
                      colClasses = c('character', 'character', 'numeric', 'numeric',
